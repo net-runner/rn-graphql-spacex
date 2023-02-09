@@ -5,6 +5,7 @@ import { MainHeader } from "./main/MainHeader";
 import styled from "@emotion/native";
 import { Text20 } from "./Typography";
 import { DarkTheme } from "@react-navigation/native";
+import { Button } from "./Button";
 
 type Props = {
   loading: boolean;
@@ -41,12 +42,13 @@ export const ErrorHandler = ({
         <MainHeader />
         <MaxFillContainer>
           <HandlerText>Something went wrong</HandlerText>
+          <Button title="Retry" onPress={retry} />
         </MaxFillContainer>
       </>
     );
   }
 
-  return children;
+  return <>{children}</>;
 };
 const Row = styled.View({
   flexDirection: "row",
