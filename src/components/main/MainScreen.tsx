@@ -11,6 +11,7 @@ import {
   GetLaunchesQuery,
   GetLaunchesQueryVariables,
 } from "../../generatedGraphQL/graphql";
+import { ErrorHandler } from "../ErrorHandler";
 
 export const MainScreen = () => {
   const { fetchMore, loading, error, data } = useQuery<
@@ -25,10 +26,12 @@ export const MainScreen = () => {
   if (error) return <Text>Error : {error.message}</Text>;
 
   return (
-    <FlatList
-      data={data?.launches}
-      ListHeaderComponent={MainHeader}
-      renderItem={({ item }) => <LaunchItem item={item} />}
-    />
+    <ErrorHandler loading={loading} error={error} retry={() => null}>
+      <FlatList
+        data={data?.launches}
+        ListHeaderComponent={MainHeader}
+        renderItem={({ item }) => <LaunchItem item={item} />}
+      />
+    </ErrorHandler>
   );
 };

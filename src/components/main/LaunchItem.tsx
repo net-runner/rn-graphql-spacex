@@ -28,5 +28,5 @@ const ItemContainer = styled.View({
   alignSelf: "center",
   minHeight: 50,
   marginBottom: 20,
-  backgroundColor: `${DarkTheme.colors.card}`,
+  backgroundColor: DarkTheme.colors.card,
 });
