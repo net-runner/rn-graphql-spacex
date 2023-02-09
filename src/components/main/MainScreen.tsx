@@ -1,5 +1,5 @@
 import { View, Text, FlatList } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuery } from "@apollo/client";
@@ -12,8 +12,11 @@ import {
   GetLaunchesQueryVariables,
 } from "../../generatedGraphQL/graphql";
 import { ErrorHandler } from "../ErrorHandler";
+import { Button } from "../Button";
 
 export const MainScreen = () => {
+  const [offset, setOffset] = useState(1);
+
   const { fetchMore, loading, error, data } = useQuery<
     GetLaunchesQuery,
     GetLaunchesQueryVariables
@@ -21,17 +24,26 @@ export const MainScreen = () => {
     variables: { limit: 20 },
   });
 
-  if (loading) return <Text>Loading...</Text>;
-
-  if (error) return <Text>Error : {error.message}</Text>;
-
   return (
     <ErrorHandler loading={loading} error={error} retry={() => null}>
       <FlatList
         data={data?.launches}
         ListHeaderComponent={MainHeader}
         renderItem={({ item }) => <LaunchItem item={item} />}
+        ListFooterComponent={() => (
+          <StyledButton
+            onPress={() => {
+              fetchMore({ variables: { limit: 20, offset: 20 * offset } });
+              setOffset((offset) => offset + 1);
+            }}
+            title="Load more launches"
+          />
+        )}
       />
     </ErrorHandler>
   );
 };
+
+const StyledButton = styled(Button)({
+  marginBottom: 60,
+});

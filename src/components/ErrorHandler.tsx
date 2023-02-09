@@ -9,19 +9,12 @@ import { Button } from "./Button";
 
 type Props = {
   loading: boolean;
-  loadingText?: string;
   error: ApolloError | undefined;
   children: React.ReactNode;
   retry: () => void;
 };
 
-export const ErrorHandler = ({
-  loading,
-  error,
-  retry,
-  loadingText,
-  children,
-}: Props) => {
+export const ErrorHandler = ({ loading, error, retry, children }: Props) => {
   if (loading) {
     return (
       <>

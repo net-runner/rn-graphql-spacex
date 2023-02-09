@@ -1,7 +1,6 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import React from "react";
-import { useColorScheme } from "react-native";
 import { AppStack } from "./src/components/AppStack";
 
 const apolloClient = new ApolloClient({
@@ -10,8 +9,6 @@ const apolloClient = new ApolloClient({
 });
 
 export const App = () => {
-  const isDarkMode = useColorScheme() === "dark";
-
   return (
     <ApolloProvider client={apolloClient}>
       <NavigationContainer theme={DarkTheme}>
