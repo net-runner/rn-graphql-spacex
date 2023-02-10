@@ -7,12 +7,18 @@ If there is anything unclear, reach out to us through email.
 
 ### Screenshots
 
-![Simulator Screen Shot - iPhone 14 - 2023-02-10 at 22 28 25](https://user-images.githubusercontent.com/40372583/218203090-c32c8d16-8bf0-446f-82ee-e38472137a1e.png)
-![Simulator Screen Shot - iPhone 14 - 2023-02-10 at 22 31 52](https://user-images.githubusercontent.com/40372583/218203108-2079d805-6521-4f4a-a0d6-d050706411f1.png)
-![Simulator Screen Shot - iPhone 14 - 2023-02-10 at 22 32 13](https://user-images.githubusercontent.com/40372583/218203123-ccb23e01-b8ee-4199-a207-a24a89e322cf.png)
-![Simulator Screen Shot - iPhone 14 - 2023-02-10 at 22 31 26](https://user-images.githubusercontent.com/40372583/218203134-5b3bbfcf-7d9b-4bbd-9612-5d187e73c228.png)
-![Simulator Screen Shot - iPhone 14 - 2023-02-10 at 22 31 15](https://user-images.githubusercontent.com/40372583/218203148-1950ac89-5d04-40c8-b64e-1d0dcfc1af36.png)
-![Simulator Screen Shot - iPhone 14 - 2023-02-10 at 22 30 51](https://user-images.githubusercontent.com/40372583/218203160-781a3cc8-066c-4cdd-a118-7ef659794f3f.png)
+| MainScreen.tsx | DetailsScreen.tsx |
+|:-------------------------:|:-------------------------:|
+|<img src="https://user-images.githubusercontent.com/40372583/218203090-c32c8d16-8bf0-446f-82ee-e38472137a1e.png" width="200"/>|<img src="https://user-images.githubusercontent.com/40372583/218203160-781a3cc8-066c-4cdd-a118-7ef659794f3f.png" width="200"/>
+
+| Load more launches | Filter launches by name |
+|:-------------------------:|:-------------------------:|
+|<img src="https://user-images.githubusercontent.com/40372583/218203108-2079d805-6521-4f4a-a0d6-d050706411f1.png" width="200"/>|<img src="https://user-images.githubusercontent.com/40372583/218203123-ccb23e01-b8ee-4199-a207-a24a89e322cf.png" width="200"/>
+
+| Loading | Error handling |
+|:-------------------------:|:-------------------------:|
+|<img src="https://user-images.githubusercontent.com/40372583/218203134-5b3bbfcf-7d9b-4bbd-9612-5d187e73c228.png" width="200"/>|<img src="https://user-images.githubusercontent.com/40372583/218203148-1950ac89-5d04-40c8-b64e-1d0dcfc1af36.png" width="200"/>
+
 
 
 
