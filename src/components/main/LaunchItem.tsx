@@ -18,7 +18,7 @@ export const LaunchItem = ({item}: Props) => {
 	const date = new Date(item?.launch_date_unix * 1000);
 	const dayMonthYear = date.getDay() + 1 + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 	return (
-		<Pressable onPress={() => navigate(Screen.DETAILS, {item})}>
+		<Pressable testID={'launchItem'} onPress={() => navigate(Screen.DETAILS, {item})}>
 			<AnimatePresence>
 				<ItemContainer
 					from={{

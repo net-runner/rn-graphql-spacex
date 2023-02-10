@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 import {MainScreen} from './MainScreen';
 import {useQuery} from '@apollo/client';
 
@@ -16,12 +16,6 @@ jest.mock('@react-navigation/native', () => ({
 		},
 	},
 }));
-
-const launchItem = {
-	mission_name: 'Test Mission',
-	rocket_name: 'Test Rocket',
-	launch_date_unix: 1616161616161,
-};
 
 describe('MainScreen component', () => {
 	it('should render the component correctly with loading state', () => {
