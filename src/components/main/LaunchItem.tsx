@@ -1,4 +1,4 @@
-import {Pressable} from 'react-native';
+import {Pressable, View} from 'react-native';
 import React from 'react';
 import styled from '@emotion/native';
 import {DarkTheme, useNavigation} from '@react-navigation/native';
@@ -35,6 +35,7 @@ export const LaunchItem = ({item}: Props) => {
 							<Row>
 								<RocketIcon name="rocket1" color={'#f5f5f5'} />
 								<Text14>{item?.rocket?.rocket_name}</Text14>
+								<Indicator active={item?.rocket?.rocket?.active || false} />
 							</Row>
 						</InfoContainer>
 
@@ -54,6 +55,14 @@ export const LaunchItem = ({item}: Props) => {
 		</Pressable>
 	);
 };
+const Indicator = styled(View)<{active: boolean}>(({active}) => ({
+	width: 6,
+	height: 6,
+	borderRadius: 3,
+	alignSelf: 'center',
+	marginLeft: 4,
+	backgroundColor: active ? '#f5f5f5' : 'gray',
+}));
 const RocketIcon = styled(Icon)({
 	marginRight: 5,
 	marginTop: 2,
