@@ -13,7 +13,12 @@ export const SearchBar = ({value, setValue, ...rest}: SearchBarInterface) => {
 	return (
 		<SearchContainer>
 			<Icon name="search1" size={24} color={'gray'} />
-			<StyledInput value={value} onChange={e => setValue(e.nativeEvent.text)} {...rest} />
+			<StyledInput
+				placeholderTextColor={DarkTheme.colors.text}
+				value={value}
+				onChange={e => setValue(e.nativeEvent.text)}
+				{...rest}
+			/>
 			{value !== '' && (
 				<TouchableWithoutFeedback onPress={() => setValue('')}>
 					<Icon name="close" size={24} color={'gray'} />
