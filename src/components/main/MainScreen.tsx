@@ -8,9 +8,12 @@ import {LaunchItem} from './LaunchItem';
 import {GetLaunchesQuery, GetLaunchesQueryVariables} from '../../generatedGraphQL/graphql';
 import {ErrorHandler} from '../ErrorHandler';
 import {Button} from '../Button';
+import {SearchBar} from './SearchBar';
+import {Text20} from '../Typography';
 
 export const MainScreen = () => {
 	const [offset, setOffset] = useState(1);
+	const [Filter, setFilter] = useState('');
 
 	const {refetch, loading, error, data} = useQuery<GetLaunchesQuery, GetLaunchesQueryVariables>(GET_LAUNCHES, {
 		fetchPolicy: 'cache-first',
@@ -26,23 +29,47 @@ export const MainScreen = () => {
 	const filteredData = useMemo(() => {
 		return reversedData.slice(0, 20 * offset);
 	}, [reversedData, offset]);
+	const handleChange = (val: string) => {
+		setFilter(val);
+	};
+	const launchesFilteredByMissionName = useMemo(
+		() =>
+			reversedData.filter(i => {
+				if (i?.mission_name) {
+					return i?.mission_name.toLowerCase().includes(Filter.toLowerCase());
+				}
+			}),
+		[Filter, reversedData],
+	);
 
 	return (
 		<ErrorHandler loading={loading} error={error} retry={refetch}>
 			<FlatList
 				testID={'flaslist'}
-				data={filteredData}
-				ListHeaderComponent={MainHeader}
+				data={Filter === '' ? filteredData : launchesFilteredByMissionName}
+				ListHeaderComponent={
+					<>
+						<MainHeader />
+						<SearchBar placeholder="Search launches..." value={Filter} setValue={handleChange} />
+					</>
+				}
 				renderItem={({item}) => <LaunchItem item={item} />}
-				ListFooterComponent={() => (
-					<StyledButton
-						testID={'load-more-launches'}
-						onPress={() => {
-							setOffset(offset => offset + 1);
-						}}
-						title="Load more launches"
-					/>
-				)}
+				ListFooterComponent={
+					Filter === '' ? (
+						<StyledButton
+							testID={'load-more-launches'}
+							onPress={() => {
+								setOffset(offset => offset + 1);
+							}}
+							title="Load more launches"
+						/>
+					) : null
+				}
+				ListEmptyComponent={
+					<MaxFillContainer>
+						<Text20>No results</Text20>
+					</MaxFillContainer>
+				}
 			/>
 		</ErrorHandler>
 	);
@@ -50,4 +77,10 @@ export const MainScreen = () => {
 
 const StyledButton = styled(Button)({
 	marginBottom: 60,
+});
+const MaxFillContainer = styled.View({
+	flex: 1,
+	justifyContent: 'center',
+	alignItems: 'center',
+	flexGrow: 1,
 });
