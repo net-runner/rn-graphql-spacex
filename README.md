@@ -6,7 +6,7 @@ Cover the features and requirements.
 If there is anything unclear, reach out to us through email.
 
 ## Features
-- [ ] As a user I want to see the list of 20 most recent launches from launchesPast collection from https://spacex-production.up.railway.app/
+- [ ] As a user I want to see the list of 20 oldest launches from launchesPast collection from https://spacex-production.up.railway.app/
 - [ ] As a user I want to see the "Loading..." when the list is loading
 - [ ] As a user I want to see the "Something went wrong" when there is an error with API connection
 - [ ] As a user I want to see details of each Launch:
