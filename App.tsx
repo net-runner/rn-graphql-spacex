@@ -7,11 +7,8 @@ import { AppStack } from "./src/components/AppStack";
 const apolloClient = new ApolloClient({
   uri: "https://spacex-production.up.railway.app/",
   cache: new InMemoryCache(),
-  connectToDevTools: true,
 });
-if (__DEV__) {
-  NativeModules.DevSettings.setIsDebuggingRemotely(true);
-}
+
 export const App = () => {
   return (
     <ApolloProvider client={apolloClient}>

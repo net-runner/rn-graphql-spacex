@@ -5,6 +5,9 @@ export const Text20 = styled.Text({
   fontSize: 20,
   color: DarkTheme.colors.text,
 });
+export const Text20Bold = styled(Text20)({
+  fontWeight: "bold",
+});
 
 export const Text40 = styled(Text20)({
   fontSize: 40,

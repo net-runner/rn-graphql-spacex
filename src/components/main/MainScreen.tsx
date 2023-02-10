@@ -18,13 +18,11 @@ export const MainScreen = () => {
   const { fetchMore, refetch, loading, error, data } = useQuery<
     GetLaunchesQuery,
     GetLaunchesQueryVariables
-  >(GET_LAUNCHES, {
-    variables: { sort: "launch_date_unix", order: "DESC" },
-  });
+  >(GET_LAUNCHES);
 
   const reversedData = useMemo(() => {
     if (data?.launches) {
-      return [...data.launches].reverse();
+      return [...data.launches];
     }
     return [];
   }, [data?.launches]);
@@ -33,6 +31,7 @@ export const MainScreen = () => {
     return reversedData.slice(0, 20 * offset);
   }, [reversedData, offset]);
 
+  console.log(filteredData.length);
   return (
     <ErrorHandler loading={loading} error={error} retry={refetch}>
       <FlatList
@@ -41,7 +40,9 @@ export const MainScreen = () => {
         renderItem={({ item }) => <LaunchItem item={item} />}
         ListFooterComponent={() => (
           <StyledButton
-            onPress={() => setOffset((offset) => offset + 1)}
+            onPress={() => {
+              setOffset((offset) => offset + 1);
+            }}
             title="Load more launches"
           />
         )}

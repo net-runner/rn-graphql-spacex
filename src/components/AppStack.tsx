@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AppStackParamList, AppStackProps } from "./AppStackProps";
-import DetailsScreen from "./main/details/DetailsScreen";
+import { DetailsScreen } from "./main/details/DetailsScreen";
 import { MainScreen } from "./main/MainScreen";
 import { Screen } from "./Screens";
 

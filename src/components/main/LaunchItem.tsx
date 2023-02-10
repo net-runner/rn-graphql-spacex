@@ -1,13 +1,13 @@
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import React from "react";
-import { GetLaunchesQuery } from "../../generatedGraphQL/graphql";
 import styled from "@emotion/native";
 import { DarkTheme, useNavigation } from "@react-navigation/native";
-import { Text14, Text16Bold, Text20, Text40 } from "../Typography";
+import { Text14, Text16Bold } from "../Typography";
 import Icon from "react-native-vector-icons/AntDesign";
 import { AppStackProps } from "../AppStackProps";
 import { Screen } from "../Screens";
 import { Launch } from "../Launch";
+import { AnimatePresence, MotiView } from "moti";
 
 type Props = {
   item: Launch;
@@ -20,28 +20,39 @@ export const LaunchItem = ({ item }: Props) => {
     date.getDay() + 1 + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
   return (
     <Pressable onPress={() => navigate(Screen.DETAILS, { item })}>
-      <ItemContainer>
-        <RowBetween>
-          <InfoContainer>
-            <MissionName>{item?.mission_name}</MissionName>
-            <Row>
-              <RocketIcon name="rocket1" color={"#f5f5f5"} />
-              <Text14>{item?.rocket?.rocket_name}</Text14>
-            </Row>
-          </InfoContainer>
+      <AnimatePresence>
+        <ItemContainer
+          from={{
+            opacity: 0,
+            scale: 0.9,
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+          }}
+        >
+          <RowBetween>
+            <InfoContainer>
+              <MissionName>{item?.mission_name}</MissionName>
+              <Row>
+                <RocketIcon name="rocket1" color={"#f5f5f5"} />
+                <Text14>{item?.rocket?.rocket_name}</Text14>
+              </Row>
+            </InfoContainer>
 
-          <DateContainer>
-            <Row>
-              <Text14>{dayMonthYear}</Text14>
-              <StyledIcon name="calendar" color={"#f5f5f5"} />
-            </Row>
-            <Row>
-              <Text14>{date.toTimeString().split(" ")[0]}</Text14>
-              <StyledIcon name="clockcircleo" color={"#f5f5f5"} />
-            </Row>
-          </DateContainer>
-        </RowBetween>
-      </ItemContainer>
+            <DateContainer>
+              <Row>
+                <Text14>{dayMonthYear}</Text14>
+                <StyledIcon name="calendar" color={"#f5f5f5"} />
+              </Row>
+              <Row>
+                <Text14>{date.toTimeString().split(" ")[0]}</Text14>
+                <StyledIcon name="clockcircleo" color={"#f5f5f5"} />
+              </Row>
+            </DateContainer>
+          </RowBetween>
+        </ItemContainer>
+      </AnimatePresence>
     </Pressable>
   );
 };
@@ -74,7 +85,7 @@ const DateContainer = styled.View({
   flex: 1,
 });
 
-const ItemContainer = styled.View({
+const ItemContainer = styled(MotiView)({
   borderRadius: 10,
   width: "90%",
   alignSelf: "center",

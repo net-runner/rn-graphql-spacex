@@ -1,5 +1,8 @@
 import { Screen } from "./Screens";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
 import { Launch } from "./Launch";
 
 export type AppStackParamList = {

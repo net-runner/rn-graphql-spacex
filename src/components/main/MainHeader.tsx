@@ -3,10 +3,14 @@ import React from "react";
 import styled from "@emotion/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export const MainHeader = () => {
+type Props = {
+  text?: string;
+};
+
+export const MainHeader = ({ text }: Props) => {
   return (
     <HeaderContainer mode={"margin"} edges={["top"]}>
-      <MainText>SpaceX Launches</MainText>
+      <MainText>{text ? text : "SpaceX Launches"}</MainText>
     </HeaderContainer>
   );
 };
