@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const GET_LAUNCHES = gql(`
 query getLaunches($limit: Int, $offset: Int, $sort: String, $order: String) {

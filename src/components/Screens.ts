@@ -1,4 +1,4 @@
 export enum Screen {
-  MAIN = "main",
-  DETAILS = "details",
+	MAIN = 'main',
+	DETAILS = 'details',
 }

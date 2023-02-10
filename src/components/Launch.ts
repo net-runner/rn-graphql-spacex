@@ -1,7 +1,5 @@
-import { GetLaunchesQuery } from "../generatedGraphQL/graphql";
+import {GetLaunchesQuery} from '../generatedGraphQL/graphql';
 
-type ArrayElement<ArrayType> = ArrayType extends readonly (infer ElementType)[]
-  ? ElementType
-  : never;
+type ArrayElement<ArrayType> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
 
-export type Launch = ArrayElement<GetLaunchesQuery["launches"]>;
+export type Launch = ArrayElement<GetLaunchesQuery['launches']>;
