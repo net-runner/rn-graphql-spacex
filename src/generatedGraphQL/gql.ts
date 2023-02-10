@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "\n  query getLaunches($limit: Int, $offset: Int, $sort: String) {\n    launches(limit: $limit, offset: $offset, sort: $sort) {\n      id\n      launch_date_utc\n      launch_success\n      mission_name\n      rocket {\n        rocket_name\n      }\n    }\n  }\n": types.GetLaunchesDocument,
+    "\nquery getLaunches($limit: Int, $offset: Int, $sort: String, $order: String) {\n  launches(limit: $limit, offset: $offset, sort: $sort, order: $order) {\n    id\n    launch_success\n    mission_name\n    rocket {\n      rocket_name\n    }\n    launch_date_unix\n    launch_date_utc\n    launch_date_local\n  }\n}\n\n": types.GetLaunchesDocument,
 };
 
 /**
@@ -33,7 +33,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query getLaunches($limit: Int, $offset: Int, $sort: String) {\n    launches(limit: $limit, offset: $offset, sort: $sort) {\n      id\n      launch_date_utc\n      launch_success\n      mission_name\n      rocket {\n        rocket_name\n      }\n    }\n  }\n"): (typeof documents)["\n  query getLaunches($limit: Int, $offset: Int, $sort: String) {\n    launches(limit: $limit, offset: $offset, sort: $sort) {\n      id\n      launch_date_utc\n      launch_success\n      mission_name\n      rocket {\n        rocket_name\n      }\n    }\n  }\n"];
+export function gql(source: "\nquery getLaunches($limit: Int, $offset: Int, $sort: String, $order: String) {\n  launches(limit: $limit, offset: $offset, sort: $sort, order: $order) {\n    id\n    launch_success\n    mission_name\n    rocket {\n      rocket_name\n    }\n    launch_date_unix\n    launch_date_utc\n    launch_date_local\n  }\n}\n\n"): (typeof documents)["\nquery getLaunches($limit: Int, $offset: Int, $sort: String, $order: String) {\n  launches(limit: $limit, offset: $offset, sort: $sort, order: $order) {\n    id\n    launch_success\n    mission_name\n    rocket {\n      rocket_name\n    }\n    launch_date_unix\n    launch_date_utc\n    launch_date_local\n  }\n}\n\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

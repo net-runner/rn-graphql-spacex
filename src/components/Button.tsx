@@ -1,9 +1,4 @@
-import {
-  View,
-  Text,
-  TouchableWithoutFeedback,
-  TouchableOpacityProps,
-} from "react-native";
+import { TouchableOpacityProps } from "react-native";
 import React from "react";
 import styled from "@emotion/native";
 import { Text20 } from "./Typography";
@@ -17,15 +12,19 @@ type Props = {
 
 export const Button = ({ title, onPress, ...props }: Props) => {
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
-      <ButtonContainer {...props}>
-        <Text20>{title}</Text20>
-      </ButtonContainer>
-    </TouchableWithoutFeedback>
+    <ButtonContainer
+      onPress={async () => {
+        console.log("JEzus");
+        await onPress();
+      }}
+      {...props}
+    >
+      <Text20>{title}</Text20>
+    </ButtonContainer>
   );
 };
 
-const ButtonContainer = styled.View({
+const ButtonContainer = styled.TouchableOpacity({
   alignContent: "center",
   justifyContent: "center",
   alignItems: "center",

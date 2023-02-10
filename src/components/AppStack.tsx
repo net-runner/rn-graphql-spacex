@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AppStackProps } from "./AppStackProps";
+import { AppStackParamList, AppStackProps } from "./AppStackProps";
 import DetailsScreen from "./main/details/DetailsScreen";
 import { MainScreen } from "./main/MainScreen";
 import { Screen } from "./Screens";
 
-const Stack = createNativeStackNavigator<AppStackProps>();
+const Stack = createNativeStackNavigator<AppStackParamList>();
 
 export const AppStack = () => {
   return (

@@ -1,9 +1,7 @@
 import { View, Text, FlatList } from "react-native";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled from "@emotion/native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuery } from "@apollo/client";
-import { gql } from "../../generatedGraphQL/gql";
 import { MainHeader } from "./MainHeader";
 import { GET_LAUNCHES } from "../../graphql/getLaunches";
 import { LaunchItem } from "./LaunchItem";
@@ -17,25 +15,33 @@ import { Button } from "../Button";
 export const MainScreen = () => {
   const [offset, setOffset] = useState(1);
 
-  const { fetchMore, loading, error, data } = useQuery<
+  const { fetchMore, refetch, loading, error, data } = useQuery<
     GetLaunchesQuery,
     GetLaunchesQueryVariables
   >(GET_LAUNCHES, {
-    variables: { limit: 20 },
+    variables: { sort: "launch_date_unix", order: "DESC" },
   });
 
+  const reversedData = useMemo(() => {
+    if (data?.launches) {
+      return [...data.launches].reverse();
+    }
+    return [];
+  }, [data?.launches]);
+
+  const filteredData = useMemo(() => {
+    return reversedData.slice(0, 20 * offset);
+  }, [reversedData, offset]);
+
   return (
-    <ErrorHandler loading={loading} error={error} retry={() => null}>
+    <ErrorHandler loading={loading} error={error} retry={refetch}>
       <FlatList
-        data={data?.launches}
+        data={filteredData}
         ListHeaderComponent={MainHeader}
         renderItem={({ item }) => <LaunchItem item={item} />}
         ListFooterComponent={() => (
           <StyledButton
-            onPress={() => {
-              fetchMore({ variables: { limit: 20, offset: 20 * offset } });
-              setOffset((offset) => offset + 1);
-            }}
+            onPress={() => setOffset((offset) => offset + 1)}
             title="Load more launches"
           />
         )}
