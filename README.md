@@ -1,9 +1,4 @@
-# Launches history browser
-
-This is a basic launches history browser. Your task is to get the data from the GraphQL API and display it on the screen.
-Cover the features and requirements.
-
-If there is anything unclear, reach out to us through email.
+Recruitment task for [Masterhub](https://www.masterhub.com/)
 
 ### Screenshots
 
